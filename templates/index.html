@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+
+
+
+            <div class="row">
+                {% for item in cate %}
+                <div class="col-md-3">
+                    <div class="card">
+
+
+
+                        <div class="card-body">
+                            <div class="category-image">
+                                <img src=" /media/{{item.img}} " alt="My image" width="150" height="150">
+                            </div>
+                            <a href="{% url 'product-info' item.slug %}">{{item.name}}</a>
+                   
+                        </div>
+           
+                    </div>
+                </div>
+
+                {% endfor %}
+            </div>
+            </div>
+            </div>
+            </div>
+        
+
+
+
+
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>trending</h3>
+            <hr>
+            <div class="row">
+                {% for item in trend %}
+                <div class="col-md-3">
+                    <div class="card">
+                        <a href="{% url 'product-view' item.Category.slug item.slug %}">
+
+                            <div class="card-body">
+                                <div class="category-image">
+                                    <img src=" /media/{{item.p_img}} " alt="My image" width="150" height="150">
+                                </div>
+                                <h6>{{item.name}}</h6>
+                                <h6>{{item.price}}</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+{% endblock content %}

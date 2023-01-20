@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<section>
+  <h1>view product</h1>
+
+  <div class="card product_data all_product">
+    <img src=" /media/{{things.p_img}} " alt="My image" width="150" height="150">
+
+    <h3>{{things.name}}</h3>
+    <h3>{{things.s_desc}}</h3>
+    <h3>price - {{things.price}}</h3>
+
+    <br />
+
+    {% if things.quantity > 0 %}
+    <h6>In stock</h6>
+    {% csrf_token %}
+
+    {% else %}
+
+    <h6>out of stock</h6>
+
+    {% endif %}
+
+
+    {% csrf_token %}
+    <input type="hidden" name="" value="{{things.id}}" class="prod_id">
+
+    <button type="button" class="add_to_wish_list_btn btn-primary btn-primary" style="width: 150px; ">
+      add to wishlist</button>
+
+    {% if things.quantity > 0 %}
+
+    <button type="button" class="addToCartBtn btn-primary " style="width: 150px; ">
+      add to cart</button>
+
+    {% endif %}
+    <br>
+
+    <div class="" style="display: flex;">
+      <button class="increment_btn" style="width: 30px; ">+</button>
+      <input type="text" name="quantity" id="" value="1" class="form-control qty_input" style="width: 50px; ">
+      <button class="decrement_btn" style="width: 30px;">-</button>
+    </div>
+  </div>
+</section>
+<script src="{% static 'js/jquary.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+<script src="{% static 'js/wishlist.js' %}"></script>
+
+{% endblock content %}

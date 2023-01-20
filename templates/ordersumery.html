@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<section>
+  <h1>view order summery</h1>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="shadow card">
+          <div class="card-header">
+            <h3>order view</h3>
+          </div>
+
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <h6>shipping details</h6>
+                <h6>first name - {{orders.firstname}}</h6>
+                <h6> last name - {{orders.lastname}}</h6>
+                <h6>email - {{orders.email}}</h6>
+                <h6> phone - {{orders.phone}}</h6>
+                <div> address - {{orders.address}} <br>
+                  {{orders.state}},{{orders.city}}
+                </div>
+
+
+
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  </div>
+</section>
+<script src="{% static 'js/jquary.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+<script src="{% static 'js/wishlist.js' %}"></script>
+
+{% endblock content %}

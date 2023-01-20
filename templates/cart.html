@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section>
+   <div class="py-5">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12">
+               <div class="card shadow  product_data ">
+                  <div class="card-body cart-data"> 
+                     {% if cart %}
+                     {% for item in cart %}
+                     <div class="product_data cart_product">
+                        {% load static %}
+                        <img src=" {{item.product.p_img.url }} " alt="My image" width="150" height="150">
+
+                        {% csrf_token %}
+                        <input type="hidden" name="prod_id" value="{{item.product_id}}" class="prod_id">
+                        {{item.product.name}}
+                        {{item.product.price | stringformat:'d' }}
+
+                        {% if item.product.quantity >= item.product_qty %}
+                                                
+                        <div class="" style="display: flex;">
+
+                           <button class="increment_btn changeQty" style="width: 30px; ">+</button>
+
+                           <input type="text" name="quantity" id="" value="{{item.product_qty}}" class="form-control qty_input"
+                              style="width: 50px; ">
+
+                           <button class="decrement_btn changeQty" style="width: 30px;">-</button>
+
+                        </div>
+                        {% else %}
+                        <h6>Out of Stoke</h6>
+                        {% endif %}
+                        <br>
+                        <button class="delete-cart-item btn btn-danger del-cart-item">remove</button>
+
+<br><br>
+                     </div>
+                     {% endfor %}
+<br>
+<br>
+                     <a href="{% url 'checkout' %}" class=" btn btn-primary">checkout</a>
+                     {% else %}
+                     {% endif %}
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+
+</section>
+
+<script src="{% static 'js/jquary.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+{% endblock content %}

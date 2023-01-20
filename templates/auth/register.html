@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+    <h1>register</h1>
+
+{% comment %}  
+{% for item in form %}
+<img src=" /media/{{item.img}} " alt="My image" width="150" height="150"> 
+
+    <a href="{% url 'product-info' item.slug %}">{{item.name}}</a>
+    <p></p>
+    
+    {% endfor %}
+
+
+    {{form.as_p}}
+     {% endcomment %}
+      
+
+<form action="" method="post">
+         
+          {% csrf_token %}
+          <div class="text-center">
+                    <h4>register form</h4>
+          </div>
+          <div class="form-group">
+                    <label for="">username:</label>
+                     {{form.username}} 
+                     {% if form.errors.username %}
+                     <label for="" class="text-danger">{{form.errors.username }}</label>
+                     {% endif %}
+          </div>
+          <br>
+          <div class="form-group">
+                    <label for="">email:</label>
+                      {{form.email}}
+
+                        {% if form.errors.email %}
+                     <label for="" class="text-danger">{{form.errors.email }}</label>
+                     {% endif %}
+
+
+          </div>
+          <br>
+          <div class="form-group">
+                    <label for="">password:</label>
+                        {{form.password1}}
+
+                          {% if form.errors.password1 %}
+                     <label for="" class="text-danger">{{form.errors.password1 }}</label>
+                     {% endif %}
+          </div>
+          <br>
+          <div class="form-group">
+                    <label for="">confirm password:</label>
+                      {{form.password2}}
+
+                        {% if form.errors.password2 %}
+                     <label for="" class="text-danger">{{form.errors.password2 }}</label>
+                     {% endif %}
+          </div>
+
+          <button type="submit" class="btn btn-secandry">submit</button>
+    
+   
+
+    
+     </form>
+{% endblock content %}

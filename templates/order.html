@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {% block content %} {% load static %}
+<h1>my orders</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+  
+      <div class="card shadow">
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Order Date</th>
+                        <th>Tracking Number</th>
+                        <th>Total Price</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        {% for item in orders %}
+                    <tr>
+                        <th>{{item.update_at}}</th>
+                        <th>{{item.tracking_num}}</th>
+                        <th>{{item.total_price  | stringformat:'d'}}</th>
+                        <th>{{item.status}}</th>
+                        <th><a href="{% url 'order-overview' item.tracking_num %}" class="btn btn-primary">view</a></th>
+                    </tr>
+                      {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+      </div>
+    
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

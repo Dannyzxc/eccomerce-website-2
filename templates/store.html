@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section>
+    <a href="{% url 'home' %}">home</a>
+
+    {% load static %}
+    <h1>{{Category_name.name}}</h1>
+
+    {% for item in things %}
+    <img src=" /media/{{item.p_img}} " alt="My image" width="150" height="150">
+    <br />
+    <a href="#">{{item.name}}</a>
+    <br />
+
+    <a href="#">{{item.Category_name.slug}}</a>
+    <a href="{% url 'product-view' Category_name.slug item.slug %}">view product</a>
+
+    <hr />
+
+    {% endfor %}
+</section>
+{% endblock content %}

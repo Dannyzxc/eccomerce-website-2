@@ -1,0 +1,53 @@
+{% extends 'base.html' %} {% block content %}
+
+<section>
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card shadow product_data">
+            <div class="card-body wish-data">
+              {% if wishList %}
+               {% for item in wishList %}
+              <div class="product_data wish-products">
+                {% load static %}
+                <img
+                  src=" {{item.product.p_img.url }} "
+                  alt="My image"
+                  width="150"
+                  height="150"
+                />
+
+                {% csrf_token %}
+                <input
+                  type="hidden"
+                  name="prod_id"
+                  value="{{item.product_id}}"
+                  class="prod_id"
+                />
+                {{item.product.name}} {{item.product.price | stringformat:'d' }}
+
+          {% comment %} 
+                <a href="{% url 'product-view' item.product.category.slug  item.product.slug %}" class="btn-primary">view product</a> 
+               {% endcomment %}
+                
+                <br />
+                <button class="delete-wish-item btn btn-danger del-wish-item">
+                  remove
+                </button>
+              </div>
+              {% endfor %}
+               {% else %}
+              <h3>Your wishlist is empty</h3>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="{% static 'js/jquary.js' %}"></script>
+<script src="{% static 'js/wishList.js' %}"></script>
+{% endblock content %}
